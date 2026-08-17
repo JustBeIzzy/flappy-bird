@@ -21,9 +21,9 @@ Mekanik Utama
 Flap & Gravity - Karakter secara konstan jatuh karena gravitasi, dan pemain harus menekan layar/mouse untuk membuat burung mengepakkan sayap terbang ke atas.
 Health System - Pemain memiliki 3 nyawa (Hati). Terkena pipa atau musuh akan mengurangi 1 nyawa dan memberikan status kebal (Invulnerable) selama 1,5 detik. Jatuh ke tanah akan langsung mengakibatkan Game Over.
 Trap System (Bubble) - Jika menyentuh gelembung, burung akan terperangkap dan membeku di udara. Pemain harus men-tap layar 3 kali dengan cepat untuk memecahkannya.
+
 ✨ Fitur Utama & Perubahan (Fitur Baru)
 Karena proyek ini dikembangkan dari mekanik dasar Flappy Bird original, berikut adalah perubahan dan fitur baru yang telah ditambahkan ke dalam source code:
-
  Sistem Progresi Level (Stages): Jarak antar pipa akan semakin menyempit dan laju permainan menjadi lebih cepat setiap melewati jumlah rintangan tertentu.
  Dynamic Environment: Perubahan latar belakang secara dinamis (Siklus Siang -> Senja -> Malam) setiap melewati 15 pipa.
  Musuh Homing (Wasp): Penambahan musuh tawon yang muncul di Stage 3 dan akan secara agresif mengejar posisi vertikal pemain.
