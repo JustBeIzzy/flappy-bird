@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6xt1pam4caki"]
+
+[ext_resource type="Script" uid="uid://bsj4m2pw5fftg" path="res://scenes/bird.gd" id="1_jmxwj"]
+[ext_resource type="Texture2D" uid="uid://cpekir00u8bux" path="res://assets/red_bird1.png" id="2_red1"]
+[ext_resource type="Texture2D" uid="uid://dg5oycpkkacdw" path="res://assets/red_bird2.png" id="3_red2"]
+[ext_resource type="Texture2D" uid="uid://dw1t3bodai6ww" path="res://assets/red_bird3.png" id="4_red3"]
+[ext_resource type="Texture2D" uid="uid://j11qgjkul1pq" path="res://assets/blue_bird1.png" id="5_blue1"]
+[ext_resource type="Texture2D" uid="uid://d2ue22awflfqx" path="res://assets/blue_bird2.png" id="6_blue2"]
+[ext_resource type="Texture2D" uid="uid://gbpabivnurkj" path="res://assets/blue_bird3.png" id="7_blue3"]
+[ext_resource type="AudioStream" uid="uid://n152wr4gfqdb" path="res://assets/wing.ogg" id="8_wing"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xn4pq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_blue1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_blue2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_blue3")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_red1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_red2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_red3")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0hppq"]
+radius = 18.0
+height = 52.0
+
+[node name="Bird" type="CharacterBody2D"]
+script = ExtResource("1_jmxwj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_xn4pq")
+animation = &"red"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0hppq")
+
+[node name="WingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wing")

@@ -1,0 +1,197 @@
+[gd_scene load_steps=18 format=3 uid="uid://blj5g47uwo7m0"]
+
+[ext_resource type="Script" uid="uid://cry4d8nr3ldmc" path="res://scenes/main.gd" id="1_5g6v2"]
+[ext_resource type="Texture2D" uid="uid://d38ceuoo614k4" path="res://assets/bg.png" id="1_s2jh7"]
+[ext_resource type="PackedScene" uid="uid://cr3pl7yfk32tb" path="res://scenes/pipe.tscn" id="2_h58j0"]
+[ext_resource type="PackedScene" uid="uid://b6xt1pam4caki" path="res://scenes/bird.tscn" id="3_4ap2d"]
+[ext_resource type="PackedScene" uid="uid://d2ort7tfi33lg" path="res://scenes/ground.tscn" id="4_kx1e6"]
+[ext_resource type="PackedScene" uid="uid://bqf6is6nyokxx" path="res://scenes/coin.tscn" id="6_coin"]
+[ext_resource type="PackedScene" uid="uid://dq8bubble01x" path="res://scenes/bubble.tscn" id="7b_bubble"]
+[ext_resource type="PackedScene" uid="uid://dq8wasp001x" path="res://scenes/wasp.tscn" id="7c_wasp"]
+[ext_resource type="PackedScene" uid="uid://b52ngqv3bgnbg" path="res://scenes/powerup.tscn" id="7_pwrup"]
+[ext_resource type="PackedScene" uid="uid://snrvq7jkapgf" path="res://scenes/game_over.tscn" id="8_yk7bg"]
+[ext_resource type="Texture2D" uid="uid://w5bgsgxgu20n" path="res://assets/get_ready.png" id="9_ready"]
+[ext_resource type="Texture2D" uid="uid://o78w036314lx" path="res://assets/tap_tap.png" id="10_tap"]
+[ext_resource type="AudioStream" uid="uid://b1qi5a1w5vv6" path="res://assets/die.ogg" id="11_die"]
+[ext_resource type="AudioStream" uid="uid://c8icsabk0po7l" path="res://assets/hit.ogg" id="12_hit"]
+[ext_resource type="AudioStream" uid="uid://d25rwjcmxow36" path="res://assets/point.ogg" id="13_point"]
+[ext_resource type="AudioStream" uid="uid://bd8feij3it4q3" path="res://assets/shrink.wav" id="14_shrink"]
+[ext_resource type="AudioStream" uid="uid://cpbg66hlxudni" path="res://assets/game_theme.wav" id="15_theme"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_5g6v2")
+pipe_scene = ExtResource("2_h58j0")
+coin_scene = ExtResource("6_coin")
+powerup_scene = ExtResource("7_pwrup")
+bubble_scene = ExtResource("7b_bubble")
+wasp_scene = ExtResource("7c_wasp")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_s2jh7")
+offset = Vector2(432, 384)
+
+[node name="Bird" parent="." instance=ExtResource("3_4ap2d")]
+
+[node name="Ground" parent="." instance=ExtResource("4_kx1e6")]
+z_index = 1
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="ScoreDisplay" type="HBoxContainer" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="CoinLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 240.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 28
+text = "COINS: 0"
+
+[node name="Hearts" type="HBoxContainer" parent="."]
+z_index = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 60.0
+theme_override_constants/separation = 6
+
+[node name="Heart0" type="TextureRect" parent="Hearts"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart1" type="TextureRect" parent="Hearts"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="Hearts"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PauseButton" type="Button" parent="."]
+z_index = 1
+offset_left = 784.0
+offset_top = 20.0
+offset_right = 844.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 24
+text = "II"
+
+[node name="MuteButton" type="Button" parent="."]
+z_index = 1
+offset_left = 694.0
+offset_top = 20.0
+offset_right = 774.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 18
+text = "Mute"
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="Dim" type="ColorRect" parent="PauseMenu"]
+offset_right = 864.0
+offset_bottom = 936.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Label" type="Label" parent="PauseMenu"]
+offset_left = 332.0
+offset_top = 320.0
+offset_right = 532.0
+offset_bottom = 370.0
+theme_override_font_sizes/font_size = 40
+text = "PAUSED"
+
+[node name="ResumeButton" type="Button" parent="PauseMenu"]
+offset_left = 332.0
+offset_top = 400.0
+offset_right = 532.0
+offset_bottom = 450.0
+theme_override_font_sizes/font_size = 24
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="PauseMenu"]
+offset_left = 332.0
+offset_top = 470.0
+offset_right = 532.0
+offset_bottom = 520.0
+theme_override_font_sizes/font_size = 24
+text = "Main Menu"
+
+[node name="GetReadyLabel" type="TextureRect" parent="."]
+z_index = 1
+offset_left = 294.0
+offset_top = 150.0
+offset_right = 570.0
+offset_bottom = 231.0
+texture = ExtResource("9_ready")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TapIndicator" type="TextureRect" parent="."]
+z_index = 1
+offset_left = 202.0
+offset_top = 580.0
+offset_right = 662.0
+offset_bottom = 740.0
+texture = ExtResource("10_tap")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelLabel" type="Label" parent="."]
+visible = false
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 110.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Level 1"
+horizontal_alignment = 1
+
+[node name="SfxDie" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_die")
+
+[node name="SfxHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_hit")
+
+[node name="SfxPoint" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_point")
+
+[node name="SfxShrink" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_shrink")
+
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_theme")
+
+[node name="GameOver" parent="." instance=ExtResource("8_yk7bg")]
+
+[connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MuteButton" to="." method="_on_mute_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/QuitButton" to="." method="_on_pause_menu_quit_pressed"]
+[connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]

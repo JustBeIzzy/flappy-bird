@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq8wasp001x"]
+
+[ext_resource type="Script" path="res://scenes/wasp.gd" id="1_wasp"]
+[ext_resource type="Texture2D" path="res://assets/wasp.png" id="2_wasp_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wasp"]
+radius = 30.0
+
+[node name="Wasp" type="Area2D" groups=["wasps"]]
+script = ExtResource("1_wasp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.068, 0.068)
+texture = ExtResource("2_wasp_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wasp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

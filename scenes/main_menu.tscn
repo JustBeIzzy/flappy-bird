@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://crif0prtecxxp"]
+
+[ext_resource type="Script" uid="uid://cjg562o1njaw6" path="res://scenes/main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://d38ceuoo614k4" path="res://assets/bg.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://cte0q2xjwukx7" path="res://assets/title.png" id="3_title"]
+[ext_resource type="AudioStream" uid="uid://buo1g7le6y45m" path="res://assets/ui_theme.wav" id="4_theme"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_menu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 864.0
+offset_bottom = 936.0
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 170.0
+offset_right = 754.0
+offset_bottom = 342.0
+texture = ExtResource("3_title")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 420.0
+offset_right = 532.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 28
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 500.0
+offset_right = 532.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 28
+text = "Quit"
+
+[node name="ThemeMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_theme")
+autoplay = true
+
+[node name="MuteButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 20.0
+offset_right = 844.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 20
+text = "Mute"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MuteButton" to="." method="_on_mute_button_pressed"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq8bubble01x"]
+
+[ext_resource type="Script" path="res://scenes/bubble.gd" id="1_bubble"]
+[ext_resource type="Texture2D" path="res://assets/bubble.png" id="2_bubble_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bubble"]
+radius = 42.0
+
+[node name="Bubble" type="Area2D" groups=["bubbles"]]
+script = ExtResource("1_bubble")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("2_bubble_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bubble")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
