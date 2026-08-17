@@ -1,0 +1,12 @@
+# Godot-specific ignores
+.godot/
+.godot-mono/
+
+# Exported games
+*.exe
+*.apk
+*.aab
+*.ipa
+*.pck
+*.idsig
+*.console.exe
